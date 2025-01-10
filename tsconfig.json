@@ -1,24 +1,17 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "rootDir": "src",
-    "outDir": "dist",
-
-    /* Bundler mode */
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-
-    /* Linting */
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2016",
+    "rootDir": "./src", // Ensure this points to your source code folder
+    "outDir": "./dist", // Output folder for compiled code
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "baseUrl": "./",
+    "paths": {
+      "*": ["src/*"] // Optional, enables cleaner imports
+    }
   },
-  "include": ["src"]
+  "include": ["src/**/*"], // Ensure all source files are included
+  "exclude": ["node_modules", "dist"] // Exclude unwanted directories
 }
