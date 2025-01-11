@@ -11,7 +11,7 @@ export interface Department {
   }
   
   export interface Employee {
-    emp_id: number;
+    // emp_id: number;
     employee_id: number;
     first_Name: string;
     last_Name: string;
