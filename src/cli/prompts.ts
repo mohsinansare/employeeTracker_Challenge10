@@ -33,7 +33,7 @@ export const promptUpdateEmployeeRole = async (): Promise<void> => {
     // Create choices for the prompts
     const employeeChoices = employees.map(emp => ({
       name: `${emp.first_Name} ${emp.last_Name}`,
-      value: emp.emp_id
+      value: emp.employee_id
     }));
 
     const roleChoices = roles.map(role => ({

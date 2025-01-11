@@ -26,7 +26,7 @@ export const viewRoles = async (): Promise<{ id: number; title: string; }[]> => 
       id: row.id,
       title: row.title,
     }));
-
+    console.table(roles);
     return roles;
   } catch (err) {
     console.error('Error viewing roles:', err);
@@ -54,7 +54,7 @@ export const viewEmployees = async (): Promise<{ id: number; firstName: string; 
       firstName: row.firstname,
       lastName: row.lastname,
     }));
-
+    console.table(employees);
     return employees;
   } catch (err) {
     console.error('Error viewing employees:', err);
@@ -114,7 +114,7 @@ export const getAllEmployees = async (): Promise<Employee[]> => {
   try {
     const query = `
       SELECT 
-        emp_id,
+        employee_id,
         first_name,
         last_name,
         role_id
@@ -122,6 +122,7 @@ export const getAllEmployees = async (): Promise<Employee[]> => {
       ORDER BY last_name, first_name
     `;
     const result = await pool.query<Employee>(query);
+    console.table(result.rows);
     return result.rows;
   } catch (err) {
     console.error('Error getting employees:', err);
@@ -149,7 +150,7 @@ export const getEmployeesForSelection = async () => {
   try {
     const query = `
       SELECT 
-        e.emp_id,
+        e.employee_id,
         e.first_name,
         e.last_name,
         r.title as role_title
@@ -189,7 +190,7 @@ export const updateEmployeeRole = async (
     const query = `
       UPDATE employees
       SET role_id = $2
-      WHERE emp_id = $1
+      WHERE employee_id = $1
       RETURNING *
     `;
     const result = await pool.query<Employee>(query, [employeeId, newRoleId]);
