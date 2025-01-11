@@ -18,8 +18,7 @@ Before running this application, ensure you have the following installed:
 
 ## Usage Video
 
-Assets\video\EmployeeTrackerDemo.mp4
-
+https://github.com/MsPickles1014/Challenge-10/blob/main/Assets/video/EmployeeTrackerDemo.mp4
 
 ## License
 
