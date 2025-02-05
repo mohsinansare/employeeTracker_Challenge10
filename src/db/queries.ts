@@ -63,13 +63,15 @@ export const viewEmployees = async (): Promise<{ id: number; firstName: string; 
 };
 
 
-export const addDepartment = async (name: string): Promise<void> => {
+export const addDepartment = async (name: string): Promise<Department> => {
   try {
     const query = 'INSERT INTO department (dept_name) VALUES ($1) RETURNING *';
     const result = await pool.query<Department>(query, [name]);
     console.log('Department added successfully:', result.rows[0]);
+    return result.rows[0];
   } catch (err) {
     console.error('Error adding department:', err);
+    throw err;
   }
 };
 
@@ -96,7 +98,7 @@ export const addEmployee = async (
   lastName: string,
   roleId: number,
   managerId: number | null
-): Promise<void> => {
+): Promise<Employee> => {
   try {
     const query = `
       INSERT INTO employees (first_name, last_name, role_id, manager_id)
@@ -105,8 +107,10 @@ export const addEmployee = async (
     `;
     const result = await pool.query<Employee>(query, [firstName, lastName, roleId, managerId]);
     console.log('Employee added successfully:', result.rows[0]);
+    return result.rows[0];
   } catch (err) {
     console.error('Error adding employee:', err);
+    throw err;
   }
 };
 
